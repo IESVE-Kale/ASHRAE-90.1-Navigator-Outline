@@ -1,8 +1,105 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>ASHRAE 90.1-2013 Navigator Tree</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Content with Tabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .tabs-container {
+            width: 200px;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+        .tabs-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .tabs-container li {
+            padding: 15px;
+            cursor: pointer;
+            color: white;
+            background: #333;
+            border-bottom: 1px solid #bbb;
+            text-align: center;
+        }
+        .tabs-container li:hover {
+            background: #444;
+        }
+        .tabs-container li.active {
+            background: #666;
+        }
+        .tab-content-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .tab-content {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-	<iframe src="https://link.excalidraw.com/readonly/NUDVVBp7u2SCds5gBcbJ" width="100%" height="100%" style="border: none;"></iframe>
+    <div class="tabs-container">
+        <ul>
+            <li class="active" onclick="openTab(event, 'tab1')">ASHRAE 90.1 Navigator - 2013</li>
+            <li onclick="openTab(event, 'tab2')">ASHRAE 90.1 Navigator - 2016</li>
+            <li onclick="openTab(event, 'tab3')">ASHRAE 90.1 Navigator - 2019</li>
+        </ul>
+    </div>
+    <div class="tab-content-container">
+        <div id="tab1" class="tab-content active">
+            <iframe src="https://link.excalidraw.com/readonly/NUDVVBp7u2SCds5gBcbJ" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        <div id="tab2" class="tab-content">
+            <iframe src="https://www.example.com/iframe-content2" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        <div id="tab3" class="tab-content">
+            <iframe src="https://www.example.com/iframe-content3" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openTab(event, tabId) {
+            var i, tabcontent, tablinks;
+
+            // Hide all tab contents
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Remove active class from all tabs
+            tablinks = document.getElementsByClassName("tabs-container")[0].getElementsByTagName("li");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabId).style.display = "block";
+            document.getElementById(tabId).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
